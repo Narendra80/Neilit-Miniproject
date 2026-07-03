@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Django Student Portal</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <style>
+        {% include 'css/style.css' %}
+    </style>
+</head>
+<body>
+    <div class="container py-5">
+        <div class="row mb-5">
+            <div class="col-12 text-center">
+                <h1 class="display-4 fw-bold gradient-text mb-3">Welcome to Django</h1>
+                <p class="lead text-light opacity-75">Student Management Portal</p>
+            </div>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="hero-section h-100">
+                    <h2 class="mb-4 text-info">Course Details</h2>
+                    <h3 class="fw-bold">{{ name }}</h3>
+                    <h4 class="text-primary">{{ course }}</h4>
+                    <p class="fs-5 mb-4"><i class="bi bi-clock"></i> Duration: {{ duration }}</p>
+                    
+                    <h4 class="mt-4 mb-3">Status</h4>
+                    {% if marks > 35 %}
+                        <span class="badge bg-success status-badge"><i class="bi bi-check-circle me-2"></i>Pass ({{ marks }} Marks)</span>
+                    {% else %}
+                        <span class="badge bg-danger status-badge"><i class="bi bi-x-circle me-2"></i>Fail ({{ marks }} Marks)</span>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="hero-section h-100">
+                    <h2 class="mb-4 text-info">Student Roster</h2>
+                    <div class="row g-3">
+                        {% for student in students %}
+                        <div class="col-12">
+                            <div class="student-card p-3 d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h5 class="mb-1 text-white">
+                                        <i class="bi bi-person-circle me-2 text-primary"></i>
+                                        {% if student.name %}
+                                            {{ student.name }}
+                                        {% else %}
+                                            {{ student }}
+                                        {% endif %}
+                                    </h5>
+                                    {% if student.course %}
+                                    <small class="text-light opacity-75">
+                                        <i class="bi bi-book me-1"></i>{{ student.course }} | 
+                                        <i class="bi bi-calendar me-1"></i>{{ student.age }} yrs
+                                        {% if student.rollnumber %} | <i class="bi bi-hash me-1"></i>{{ student.rollnumber }}{% endif %}
+                                    </small>
+                                    {% endif %}
+                                </div>
+                                <span class="badge bg-primary rounded-pill">Active</span>
+                            </div>
+                        </div>
+                        {% empty %}
+                        <div class="col-12">
+                            <div class="alert alert-warning">No students found.</div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

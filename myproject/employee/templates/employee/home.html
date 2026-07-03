@@ -1,0 +1,50 @@
+{% extends 'employee/base.html' %}
+{% load static %}
+
+{% block title %}Home - Django Module 3{% endblock %}
+
+{% block content %}
+<div class="p-5 mb-4 bg-white rounded-3 shadow-sm border">
+    <div class="container-fluid py-3">
+        <!-- Slide 7: Dynamic Template Variable Demo -->
+        <h1 class="display-5 fw-bold text-primary">Welcome {{ name }}! 🎉</h1>
+        <p class="col-md-8 fs-5 text-muted mt-3">
+            This live demonstration app showcases all topics covered in <strong>Module 3: Django Framework & MySQL Integration</strong>. Explore URL routing, views, templates, Bootstrap frontend, form validation, session tracking, and ORM CRUD operations!
+        </p>
+        <hr class="my-4">
+        
+        <div class="row g-4 mt-2">
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm bg-light">
+                    <div class="card-body">
+                        <h5 class="card-title text-dark fw-bold">📌 MVT Architecture</h5>
+                        <p class="card-text small text-muted">Demonstrates separation of Model, View, and Template. Current total employees in database: <span class="badge bg-success">{{ total_employees }}</span>.</p>
+                        <a href="{% url 'employee:list' %}" class="btn btn-outline-primary btn-sm">View Database List →</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm bg-light">
+                    <div class="card-body">
+                        <h5 class="card-title text-dark fw-bold">⚙️ FBV vs CBV Views</h5>
+                        <p class="card-text small text-muted">You are currently looking at a template rendered by views.py. Switch between Function-Based and Class-Based views.</p>
+                        <a href="{% url 'employee:home_cbv' %}" class="btn btn-outline-dark btn-sm">Test Class-Based View (CBV)</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm bg-light">
+                    <div class="card-body">
+                        <h5 class="card-title text-dark fw-bold">🔒 Security & Sessions</h5>
+                        <p class="card-text small text-muted">Test session storage and see CSRF tokens in action on our employee submission forms.</p>
+                        <a href="{% url 'employee:session_demo' %}" class="btn btn-outline-info btn-sm">Test Sessions →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

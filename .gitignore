@@ -1,0 +1,16 @@
+# Django
+*.sqlite3
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environments
+.env
+.venv
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Pyright
+pyrightconfig.json
